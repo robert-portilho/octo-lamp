@@ -1,18 +1,40 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    @for (card of cards | async; track card) {
-      <mat-grid-tile [colspan]="card.cols" [rowspan]="card.rows">
+
+ <div class="dash-title-container">
+
+  <h4 class="mat-h1"> Dashboard</h4>
+  <button mat-icon-button class="more-button-dash" [matMenuTriggerFor]="menuDash" aria-label="Toggle menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menuDash="matMenu" xPosition="before">
+    <button *ngIf="!editMode" mat-menu-item (click)="toggleEditMode()">
+      <mat-icon aria-hidden="false" aria-label="edit" fontIcon="edit"></mat-icon>
+      Edit 
+      </button>
+      <button *ngIf="editMode" mat-menu-item (click)="toggleEditMode()">
+        <mat-icon aria-hidden="false" aria-label="edit" fontIcon="save"></mat-icon>
+        Save 
+        </button>
+  </mat-menu>
+ </div>
+  
+  <gridster [options]="options" [ngClass]="{'display-mode':!editMode}">
+    @for (item of dashboard; track item) {
+      <gridster-item [item]="item">
         <mat-card class="dashboard-card">
           <mat-card-header>
             <mat-card-title>
-              {{card.title}}
+              teste
               <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item>Expand</button>
-                <button mat-menu-item>Remove</button>
+                <button mat-menu-item  
+                (mousedown)="removeItem($event, item)"
+                (touchstart)="removeItem($event, item)">
+                <mat-icon aria-hidden="false" aria-label="remove" fontIcon="delete"></mat-icon>
+                Remove
+              </button>
               </mat-menu>
             </mat-card-title>
           </mat-card-header>
@@ -20,7 +42,11 @@
             <div>Card Content Here</div>
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
+
+
+      </gridster-item>
     }
-  </mat-grid-list>
+  </gridster>
+
 </div>
+

@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
+
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -13,13 +13,13 @@ import { MatIconModule } from '@angular/material/icon';
   standalone: true,
   imports: [
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
-    MatListModule,
     MatIconModule,
+    MatButtonModule,
     AsyncPipe,
   ]
 })
 export class NavbarComponent {
   opened:boolean = false;
+  @Input() menuTitle:string = 'Menu';
 }

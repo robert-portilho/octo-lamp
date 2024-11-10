@@ -5,16 +5,12 @@
       role="dialog"
       mode="over"
       [opened]="opened">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
+    <mat-toolbar>{{ menuTitle }}</mat-toolbar>
+    <ng-content select="[menu]"></ng-content>
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-     
         <button
           type="button"
           aria-label="Toggle sidenav"
@@ -24,6 +20,6 @@
         </button>
       <span>Octo Lamp</span>
     </mat-toolbar>
-     <ng-content></ng-content>
+     <ng-content select="[body]"></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
