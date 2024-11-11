@@ -1,0 +1,72 @@
+@use '../../../node_modules/@angular/material/index' as mat;
+@use 'sass:map';
+@use 'theming';
+@use "../components.style" as components;
+
+@include mat.core();
+
+$dark-primary-text: rgba(black, 0.87);
+$dark-secondary-text: rgba(black, 0.54);
+$dark-disabled-text: rgba(black, 0.38);
+$dark-dividers: rgba(black, 0.12);
+$dark-focused: rgba(black, 0.12);
+$light-primary-text: white;
+$light-secondary-text: rgba(white, 0.7);
+$light-disabled-text: rgba(white, 0.5);
+$light-dividers: rgba(white, 0.12);
+$light-focused: rgba(white, 0.12);
+
+// Background palette for light themes.
+$light-theme-background-palette: (
+  status-bar: map.get(mat.$grey-palette, 300),
+  app-bar: map.get(mat.$grey-palette, 100),
+  background: map.get(mat.$grey-palette, 50),
+  hover: rgba(black, 0.04),
+  card: white,
+  dialog: white,
+  disabled-button: rgba(black, 0.12),
+  raised-button: white,
+  focused-button: $dark-focused,
+  selected-button: map.get(mat.$grey-palette, 300),
+  selected-disabled-button: map.get(mat.$grey-palette, 400),
+  disabled-button-toggle: map.get(mat.$grey-palette, 200),
+  unselected-chip: map.get(mat.$grey-palette, 300),
+  disabled-list-option: map.get(mat.$grey-palette, 200),
+  tooltip: map.get(mat.$grey-palette, 700),
+  // hear you can add your own keys and use it in _components
+  highlighted-text:  map.get(mat.$light-blue-palette, 300),
+);
+
+// Foreground palette for light themes.
+$light-theme-foreground-palette: (
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba(black, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: black,
+  hint-text: $dark-disabled-text,
+  secondary-text: $dark-secondary-text,
+  icon: rgba(black, 0.54),
+  icons: rgba(black, 0.54),
+  text: rgba(black, 0.87),
+  slider-min: rgba(black, 0.87),
+  slider-off: rgba(black, 0.26),
+  slider-off-active: rgba(black, 0.38),
+);
+
+// Define a light theme
+$light-primary: mat.define-palette(mat.$cyan-palette);
+$light-accent: mat.define-palette(mat.$teal-palette);
+$light-warn: mat.define-palette(mat.$red-palette);
+
+$light-color-config: theming.mat-create-color-config(
+    $light-primary,
+    $light-accent,
+    $light-warn,
+    false,
+    $light-theme-foreground-palette,
+    $light-theme-background-palette);
+@include mat.all-component-themes($light-color-config);
+@include components.theme($light-color-config);

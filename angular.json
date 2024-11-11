@@ -33,7 +33,22 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/styles/custom-themes/dark-theme.scss",
+                "bundleName": "dark-theme",
+                "inject": false
+              },
+              {
+                "input": "src/styles/custom-themes/light-theme.scss",
+                "bundleName": "light-theme",
+                "inject": false
+              },
+              {
+                "input": "src/styles/custom-themes/orange-theme.scss",
+                "bundleName": "orange-theme",
+                "inject": false
+              }
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -105,5 +120,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "904f064a-4940-4db7-950b-ba8af4974ae2"
   }
 }

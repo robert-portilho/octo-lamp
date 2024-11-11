@@ -1,4 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@use '~@angular/material' as mat;
+@use "styles/components.style" as components;
+@use "styles/custom-themes/light-theme" as light-theme;
+@import "styles/reset";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Define the default light theme.
+
+$color-config: light-theme.$light-color-config;
+
+// Include material core styles.
+@include mat.core();
+@include mat.all-component-themes($color-config);
+@include components.theme($color-config);
